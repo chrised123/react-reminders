@@ -1,0 +1,21 @@
+li {
+  list-style: none;
+  height: 40px;
+  border: 1px solid #7f8c8d;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.reminder-text {
+  display: inline;
+}
+
+.remove-reminder {
+  width: 80px;
+  display: inline;
+  float: right;
+  color: #c0392b;
+}

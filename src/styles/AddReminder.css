@@ -1,0 +1,9 @@
+.form-control.add-reminder {
+  width: calc(100% - 100px);
+  float: left;
+}
+
+.btn {
+  float: right;
+  margin: 0;
+}
