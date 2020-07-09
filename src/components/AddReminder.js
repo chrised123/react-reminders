@@ -27,7 +27,7 @@ const AddReminder = ({ addReminder }) => {
           placeholder="Add reminder"
           onChange={handleChange}
           value={value}
-          maxlength={MAX_TEXT_LENGTH}
+          maxLength={MAX_TEXT_LENGTH}
         />
         <button
           type="submit"
