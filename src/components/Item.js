@@ -1,21 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './../styles/Item.css';
 
-const Item = (props) => {
-  const deleteItem = () => {
-    props.delete(props.index);
-  };
-
+const Item = ({ item, deleteReminder }) => {
   return (
-    <Fragment>
+    <>
       <li className="clearfix">
-        <div className="reminder-text">{props.item}</div>
-        <div className="remove-reminder" onClick={deleteItem}>
+        <div className="reminder-text">{item}</div>
+        <div className="remove-reminder" onClick={deleteReminder}>
           Delete
         </div>
       </li>
-    </Fragment>
+    </>
   );
 };
 
-export default Item;
+export { Item };

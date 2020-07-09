@@ -1,20 +1,25 @@
 import React from 'react';
 import './../styles/Reminders.css';
-import Item from './Item';
+import { Item } from './Item';
 
-const Reminders = (props) => {
+// Always use destructuring
+const Reminders = ({ deleteReminder, list }) => {
   return (
     <div className="reminders-list">
       <h4>Reminders</h4>
       <ul>
-        {props.list.map((item, i) => {
-          return (
-            <Item item={item} key={i} index={i} delete={props.deleteReminder} />
-          );
-        })}
+        {list.map((item, index) => (
+          // Always use implicit return, which is cool :)
+          <Item
+            item={item}
+            key={index}
+            deleteReminder={deleteReminder(index)}
+          />
+        ))}
       </ul>
     </div>
   );
 };
 
-export default Reminders;
+// Better to explicitly mention what is returning, which will be helpful when you return more things from a component
+export { Reminders };

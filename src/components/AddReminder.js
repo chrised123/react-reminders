@@ -1,50 +1,44 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './../styles/AddReminder.css';
 
-class AddReminder extends Component {
-  state = {
-    value: '',
-  };
+const MAX_TEXT_LENGTH = 80;
 
-  handleSubmit = (e) => {
+const AddReminder = ({ addReminder }) => {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.value === '') return;
-    this.props.addReminder(this.state.value);
-    this.setState({ value: '' });
+    if (value === '') return;
+    addReminder(value);
+    setValue('');
   };
 
-  handleChange = (e) => {
-    let text =
-      e.target.value.trim() === ''
-        ? e.target.value.trim()
-        : e.target.value.substring(0, 81);
-    this.setState({ value: text });
+  const handleChange = ({ target }) => {
+    let { value } = target;
+    setValue(value);
   };
 
-  render() {
-    return (
-      <div className="clearfix">
-        <form onSubmit={this.handleSubmit}>
-          <input
-            className="form-control add-reminder"
-            type="text"
-            placeholder="Add reminder"
-            onChange={this.handleChange}
-            value={this.state.value}
-          />
-          <button
-            type="submit"
-            disabled={this.state.value === ''}
-            className={
-              this.state.value !== '' ? 'btn btn-primary' : 'btn btn-disabled'
-            }
-          >
-            Add
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="clearfix">
+      <form onSubmit={handleSubmit}>
+        <input
+          className="form-control add-reminder"
+          type="text"
+          placeholder="Add reminder"
+          onChange={handleChange}
+          value={value}
+          maxlength={MAX_TEXT_LENGTH}
+        />
+        <button
+          type="submit"
+          disabled={value === ''}
+          className={value !== '' ? 'btn btn-primary' : 'btn btn-disabled'}
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  );
+};
 
-export default AddReminder;
+export { AddReminder };
