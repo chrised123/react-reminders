@@ -1,20 +1,19 @@
 import React from 'react';
-import './../styles/Reminders.css';
-import { Item } from './Item';
+import './../styles/Archives.css';
+import { ArchiveItem } from './ArchiveItem';
 
 // Always use destructuring
-const Reminders = ({ deleteReminder, addArchive, list }) => {
+const Archives = ({ deleteArchive, removeArchive, list }) => {
   return (
-    <div className="reminders-list">
-      <h4>Reminders</h4>
+    <div className="archives-list">
+      <h4>Archives</h4>
       <ul>
         {list.map((item, index) => (
           // Always use implicit return, which is cool :)
-          <Item
+          <ArchiveItem
             item={item}
             key={index}
-            deleteReminder={deleteReminder(index)}
-            addArchive={addArchive(item, index)}
+            removeArchive={removeArchive(index)}
           />
         ))}
       </ul>
@@ -23,4 +22,4 @@ const Reminders = ({ deleteReminder, addArchive, list }) => {
 };
 
 // Better to explicitly mention what is returning, which will be helpful when you return more things from a component
-export { Reminders };
+export { Archives };

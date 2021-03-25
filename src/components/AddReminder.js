@@ -29,6 +29,23 @@ const AddReminder = ({ addReminder }) => {
           value={value}
           maxLength={MAX_TEXT_LENGTH}
         />
+        <input
+          className="form-control add-date"
+          type="text"
+          placeholder="Date"
+          onChange={handleChange}
+          value={value}
+          maxLength={MAX_TEXT_LENGTH}
+        />
+        <select
+          className="form-control add-color"
+          placeholder="Color"
+          onChange={handleChange}
+          value={value}
+          maxLength={MAX_TEXT_LENGTH}
+        >
+          <option value="##2980b9">Belizehole</option>
+        </select>
         <button
           type="submit"
           disabled={value === ''}

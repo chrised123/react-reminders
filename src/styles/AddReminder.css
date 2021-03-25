@@ -1,9 +1,11 @@
-.form-control.add-reminder {
-  width: calc(100% - 100px);
-  float: left;
+.form-control {
+  margin-bottom: 10px;
+}
+
+.form-control.add-date {
+  width: 45%;
 }
 
 .btn {
   float: right;
-  margin: 0;
 }

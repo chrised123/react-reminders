@@ -9,13 +9,12 @@ li {
   margin-bottom: 10px;
 }
 
-.reminder-text {
+.archive-text {
   display: inline;
 }
 
-.remove-reminder,
-.archive-reminder {
-  width: 70px;
+.remove-archive {
+  width: 150px;
   margin-right: 10px;
   display: inline;
   float: right;
