@@ -5,7 +5,7 @@ const Item = ({ item, id, deleteReminder, addArchive }) => {
   return (
     <>
       <li className="clearfix">
-        <div className="reminder-text">{item}</div>
+        <div className="reminder-text">{item?.title} - {item?.date}</div>
         <div className="remove-reminder" onClick={deleteReminder}>
           Delete
         </div>

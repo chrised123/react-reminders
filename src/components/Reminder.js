@@ -42,11 +42,6 @@ const Reminder = () => {
           list={archives}
           removeArchive={removeArchive}
         />
-        <ul>
-          {archives.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
       </div>
     </>
   );

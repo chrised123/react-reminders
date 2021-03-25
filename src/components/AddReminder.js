@@ -4,18 +4,29 @@ import './../styles/AddReminder.css';
 const MAX_TEXT_LENGTH = 80;
 
 const AddReminder = ({ addReminder }) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState({
+    title: '', 
+    date: '', 
+    category: ''
+  });
+
+  const isDisabled = (value) => (value.title === '' || value.date === '' || value.category === '');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (value === '') return;
+    if (isDisabled(value)) return;
     addReminder(value);
-    setValue('');
+    setValue({
+      title: '', 
+      date: '', 
+      category: ''
+    });
   };
 
-  const handleChange = ({ target }) => {
-    let { value } = target;
-    setValue(value);
+  const handleChange = (newValue, type) => {
+    let updatedValue = {...value};
+    updatedValue[`${type}`] = newValue;
+    setValue(updatedValue);
   };
 
   return (
@@ -25,31 +36,32 @@ const AddReminder = ({ addReminder }) => {
           className="form-control add-reminder"
           type="text"
           placeholder="Add reminder"
-          onChange={handleChange}
-          value={value}
+          onChange={e => handleChange(e.target.value, 'title')}
+          value={value.title}
           maxLength={MAX_TEXT_LENGTH}
         />
         <input
           className="form-control add-date"
           type="text"
           placeholder="Date"
-          onChange={handleChange}
-          value={value}
+          onChange={e => handleChange(e.target.value, 'date')}
+          value={value.date}
           maxLength={MAX_TEXT_LENGTH}
         />
         <select
           className="form-control add-color"
           placeholder="Color"
-          onChange={handleChange}
-          value={value}
+          onChange={e => handleChange(e.target.value, 'category')}
+          value={value.category}
           maxLength={MAX_TEXT_LENGTH}
         >
-          <option value="##2980b9">Belizehole</option>
+          <option value="">-select-</option>
+          <option value="123">Belizehole</option>
         </select>
         <button
           type="submit"
-          disabled={value === ''}
-          className={value !== '' ? 'btn btn-primary' : 'btn btn-disabled'}
+          disabled={isDisabled(value)}
+          className={isDisabled(value) ? 'btn btn-disabled' : 'btn btn-primary'}
         >
           Add
         </button>
