@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { DatePicker } from 'antd';
+import * as moment from 'moment';
 import './../styles/AddReminder.css';
 
 const MAX_TEXT_LENGTH = 80;
+const dateFormat = 'DD/MM/yyyy';
+const dateNow = moment(new Date());
 
 const AddReminder = ({ addReminder }) => {
   const [value, setValue] = useState({
     title: '', 
-    date: '', 
+    date: moment(dateNow).format(dateFormat), 
     category: ''
   });
 
@@ -18,10 +22,18 @@ const AddReminder = ({ addReminder }) => {
     addReminder(value);
     setValue({
       title: '', 
-      date: '', 
+      date: moment(dateNow).format(dateFormat), 
       category: ''
     });
   };
+
+  const onDateChange = (date, dateValue) => {
+    handleChange(dateValue, 'date');
+  }
+
+  const disabledDate = (current) => {
+    return current < moment().endOf('day');
+  }
 
   const handleChange = (newValue, type) => {
     let updatedValue = {...value};
@@ -40,13 +52,13 @@ const AddReminder = ({ addReminder }) => {
           value={value.title}
           maxLength={MAX_TEXT_LENGTH}
         />
-        <input
+
+        <DatePicker 
           className="form-control add-date"
-          type="text"
-          placeholder="Date"
-          onChange={e => handleChange(e.target.value, 'date')}
-          value={value.date}
-          maxLength={MAX_TEXT_LENGTH}
+          defaultValue={dateNow} 
+          format={dateFormat} 
+          onChange={onDateChange}
+          disabledDate={disabledDate}
         />
         <select
           className="form-control add-color"

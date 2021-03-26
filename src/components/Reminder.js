@@ -3,6 +3,7 @@ import { Reminders } from './Reminders';
 import { Archives } from './Archives';
 import { AddReminder } from './AddReminder';
 import './../styles/Reminder.css';
+import 'antd/dist/antd.css';
 
 // Don't use classes (old & slow).
 // Don't use this keyword at all cost
